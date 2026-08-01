@@ -42,3 +42,67 @@
 #include <iostream>
 using namespace std;
 
+// Function to compute the sum of numbers
+int compute_sum(int numbers[], int n) {
+    int total = 0;
+    for (int i = 0; i < n; i++) {
+        total += numbers[i];
+    }
+    return total;
+}
+
+// Function to compute the average of numbers
+double compute_average(int numbers[], int n) {
+    int total = compute_sum(numbers, n);
+    return (double)total / n;
+}
+
+// Function to find the maximum number
+int compute_max(int numbers[], int n) {
+    int maximum = numbers[0];
+    for (int i = 1; i < n; i++) {
+        if (numbers[i] > maximum) {
+            maximum = numbers[i];
+        }
+    }
+    return maximum;
+}
+
+// Function to find the minimum number
+int compute_min(int numbers[], int n) {
+    int minimum = numbers[0];
+    for (int i = 1; i < n; i++) {
+        if (numbers[i] < minimum) {
+            minimum = numbers[i];
+        }
+    }
+    return minimum;
+}
+
+int main() {
+    int n;
+    cout << "How many numbers? ";
+    cin >> n;
+
+    if (n <= 0) {
+        cout << "Error: Number of items must be a positive integer.";
+        return 0;
+    }
+
+    int nums[n];
+
+    for (int i = 0; i < n; i++) {
+        cout << "Enter number " << i + 1 << ": ";
+        cin >> nums[i];
+    }
+
+    cout << "\nResults:\n";
+    cout << "Sum:     " << compute_sum(nums, n) << endl;
+    cout << "Average: " << compute_average(nums, n) << endl;
+    cout << "Maximum: " << compute_max(nums, n) << endl;
+    cout << "Minimum: " << compute_min(nums, n) << endl;
+
+    return 0;
+}
+
+
