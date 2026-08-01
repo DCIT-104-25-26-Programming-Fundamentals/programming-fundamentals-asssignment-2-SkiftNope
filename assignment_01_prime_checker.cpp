@@ -39,12 +39,12 @@ using namespace std;
 
 // Function to check if a number is prime
 bool isPrime(int number) {
-    // Numbers less than 2 are NOT prime
+    // Numbers less than 2 are not primes
     if (number < 2) {
         return false;
     }
 
-    // Check divisors from 2 up to number - 1
+    // Check divisors from 2 up to (number - 1)
     for (int i = 2; i < number; i++) {
         if (number % i == 0) {
             return false;
