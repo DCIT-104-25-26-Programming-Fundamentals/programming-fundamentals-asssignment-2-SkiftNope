@@ -80,3 +80,92 @@
 #include <string>
 using namespace std;
 
+// 1. Add a Task
+void addTask(vector<string>& tasks) {
+    string task;
+    cout << "Enter task: ";
+    getline(cin, task);
+    tasks.push_back(task);
+    cout << "Task added: \"" << task << "\"\n";
+}
+
+// 2. View All Tasks
+void viewTasks(const vector<string>& tasks) {
+    if (tasks.empty()) {
+        cout << "Your task list is empty.\n";
+    } else {
+        cout << "Your Tasks:\n";
+        for (size_t i = 0; i < tasks.size(); i++) {
+            cout << i + 1 << ". " << tasks[i] << "\n";
+        }
+    }
+}
+
+// 3. Delete a Task
+void deleteTask(vector<string>& tasks) {
+    if (tasks.empty()) {
+        cout << "No tasks to delete.\n";
+        return;
+    }
+
+    viewTasks(tasks);
+
+    cout << "Enter task number to delete: ";
+    int num;
+    cin >> num;
+
+    if (cin.fail()) {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "Error: Please enter a valid number.\n";
+        return;
+    }
+
+    cin.ignore(1000, '\n'); 
+
+    if (num >= 1 && num <= (int)tasks.size()) {
+        string removed = tasks[num - 1];
+        tasks.erase(tasks.begin() + (num - 1));
+        cout << "Task \"" << removed << "\" has been removed.\n";
+    } else {
+        cout << "Error: Invalid task number.\n";
+    }
+}
+
+// The program
+int main() {
+    vector<string> tasks;
+
+    while (true) {
+        cout << "\n============================\n";
+        cout << "       TO-DO LIST MENU\n";
+        cout << "============================\n";
+        cout << "1. Add task\n";
+        cout << "2. View tasks\n";
+        cout << "3. Delete task\n";
+        cout << "4. Quit\n";
+        cout << "Enter your choice (1-4): ";
+
+        int choice;
+        cin >> choice;
+        cin.ignore(1000, '\n'); 
+
+        switch (choice) {
+            case 1:
+                addTask(tasks);
+                break;
+            case 2:
+                viewTasks(tasks);
+                break;
+            case 3:
+                deleteTask(tasks);
+                break;
+            case 4:
+                cout << "Goodbye!\n";
+                return 0;
+            default:
+                cout << "Invalid choice. Please enter a number between 1 and 4.\n";
+        }
+    }
+}
+
