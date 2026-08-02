@@ -73,3 +73,114 @@
 #include <cmath>
 using namespace std;
 
+// Definning the functions
+
+double add(double a, double b) {
+    return a + b;
+}
+
+double subtract(double a, double b) {
+    return a - b;
+}
+
+double multiply(double a, double b) {
+    return a * b;
+}
+
+double divide(double a, double b) {
+    if (b == 0) {
+        cout << "Error: Cannot divide by zero." << endl;
+        return NAN;   
+    }
+    return a / b;
+}
+
+int modulo(int a, int b) {
+    if (b == 0) {
+        cout << "Error: Cannot perform modulus with zero." << endl;
+        return 0;
+    }
+    return a % b;
+}
+
+double exponent(double base, double power) {
+    return pow(base, power);
+}
+
+// The program
+
+int main() {
+    int choice;
+    double num1, num2;
+
+    cout << fixed << setprecision(2);
+
+    while (true) {
+        cout << "\n============================\n";
+        cout << "     SIMPLE CALCULATOR\n";
+        cout << "============================\n";
+        cout << "1. Addition\n";
+        cout << "2. Subtraction\n";
+        cout << "3. Multiplication\n";
+        cout << "4. Division\n";
+        cout << "5. Modulus\n";
+        cout << "6. Exponentiation\n";
+        cout << "7. Quit\n";
+        cout << "Select an operation (1-7): ";
+        cin >> choice;
+
+        if (choice == 7) {
+            cout << "Goodbye!" << endl;
+            break;
+        }
+
+        if (choice < 1 || choice > 7) {
+            cout << "Invalid choice. Please select a number between 1 and 7." << endl;
+            continue;
+        }
+
+        // Modulus requires integers
+        if (choice == 5) {
+            int a, b;
+            cout << "Enter first number : ";
+            cin >> a;
+            cout << "Enter second number: ";
+            cin >> b;
+            cout << "Result: " << a << " % " << b << " = " << modulo(a, b) << endl;
+            continue;
+        }
+
+        // Using doubles for other operations
+        cout << "Enter first number : ";
+        cin >> num1;
+        cout << "Enter second number: ";
+        cin >> num2;
+
+        switch (choice) {
+            case 1:
+                cout << "Result: " << num1 << " + " << num2 << " = " << add(num1, num2) << endl;
+                break;
+
+            case 2:
+                cout << "Result: " << num1 << " - " << num2 << " = " << subtract(num1, num2) << endl;
+                break;
+
+            case 3:
+                cout << "Result: " << num1 << " * " << num2 << " = " << multiply(num1, num2) << endl;
+                break;
+
+            case 4: {
+                double result = divide(num1, num2);
+                if (!isnan(result))
+                    cout << "Result: " << num1 << " / " << num2 << " = " << result << endl;
+                break;
+            }
+
+            case 6:
+                cout << "Result: " << num1 << " ^ " << num2 << " = " << exponent(num1, num2) << endl;
+                break;
+        }
+    }
+
+    return 0;
+}
